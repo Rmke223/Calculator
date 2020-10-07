@@ -1,38 +1,88 @@
-all HTML in JS
-
-As the user I want to use the buttons to input an equation into the calculator and get the correct response
-
-
-View
-- render header "Calculator"
-- render buttons 
-    -number
-    -operator
-    -equals
-- render input screen with initial zero
-- rerender input screen when button is pressed
+Calculator Pseudocode
+Arr = []
+currentNum = “”
+lastNum = “”
+Operator = “”
+Display = “0”
+strDisplay = “”
+Total = 0
+State =0
 
 
 
-Controller
+numbers(num){
+If (state = 0){
+		arr.push(num)
+		currentNum = arr.join(“”)
+		display= currentNum
+}
+Else{
+		arr.push(num)
+		lastNum = (arr.slice(2,arr.length).join(""))
+		Display = lastNum
+}
+}
+
+operators(){
+	If state = 0
+		arr.join(“”)
+		arr.push(‘operator’)
+		State ++
+	Else
+		Arr[1] = operator
+		Var ree = (arr.length-2)
+		for(i=0; i<ree; i==){
+		arr.pop()
+}
+		Arr.push(lastNum)
+
+		
+}
 
 
 
 
-Model
-
-
-
-
-
-
-
-
-
-after equal button pressed wait for other operator or number
-
-operator +-*/
-
-number
-does it block amount of numbers
-click or <i class="fa fa-key" aria-hidden="true"></i>
+Equals(){
+	If (arr[1] === “+”}{
+currentParse = parseint(currentNum) 
+lastParse  = parseint(lastNum)
+total = currentParse + lastParse
+display=total
+		arr.pop()
+Arr[0] = to string(total)
+} 
+Else If (arr[1] === “-”}{
+currentParse = parseint(currentNum) 
+lastParse  = parseint(lastNum)
+total = currentParse - lastParse
+display=total
+		arr.pop()
+Arr[0] = to string(total)
+} 
+Else If (arr[1 === “*”}{
+currentParse = parseint(currentNum) 
+lastParse  = parseint(lastNum)
+total = currentParse * lastParse
+display=total
+		arr.pop()
+Arr[0] = to string(total)
+} 
+Else If (arr[1r === “/”}{
+currentParse = parseint(currentNum) 
+lastParse  = parseint(lastNum)
+total = currentParse / lastParse
+Display = tostring(total)
+currentNum = tostring(total)
+Operator = “”
+} 
+}
+	
+Clear(){
+	State = 0
+	Arr = []
+currentNum = “”
+lastNum = “”
+Operator = “”
+Display = “0”
+strDisplay = “”
+Total = 0
