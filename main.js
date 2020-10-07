@@ -19,8 +19,9 @@ function init() {
     h1.innerText = "Calculator";
     currentDiv.appendChild(h1);
     const display = document.createElement("div");
-    display.setAttribute("class", "col-12 border text-right bg-secondary text-primary mb-4");
+    display.setAttribute("class", "col-12 border text-right bg-secondary text-primary mb-4 display-2");
     display.setAttribute("id", "booty");
+    display.setAttribute("style", "height: 100px;");
     display.innerHTML = disp;
     currentDiv.appendChild(display);
     const topRow = makeElement("div", "row", "topRow", "");
