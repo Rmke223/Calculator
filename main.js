@@ -19,7 +19,7 @@ function init() {
     h1.innerText = "Calculator";
     currentDiv.appendChild(h1);
     const display = document.createElement("div");
-    display.setAttribute("class", "col-12 border text-right mb-4");
+    display.setAttribute("class", "col-12 border text-right bg-secondary text-primary mb-4");
     display.setAttribute("id", "booty");
     display.innerHTML = disp;
     currentDiv.appendChild(display);
