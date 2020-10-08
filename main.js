@@ -100,6 +100,7 @@ function numbers(id) {
         currentNum = arr.join("")
         disp = currentNum
         updateDisplay();
+        console.log(arr)
     }
     else {
         arr.push(id)
@@ -111,74 +112,67 @@ function numbers(id) {
         arr.push(lastNum)
         disp = lastNum
         updateDisplay();
+        console.log(arr)
     }
     console.log(arr)
 }
 function operators(id) {
     if (state == 0) {
         var dab = arr.join("")
-        for (i = 0; i <= arr.length; i++) {
-            arr.pop()
-        }
-        console.log(arr)
+        console.log(dab)
+        arr = []
         arr.push(dab)
         arr.push(id)
         state++
+        console.log(arr)
     }
     else if (state == 1) {
         arr.push(id)
+        console.log(arr)
         console.log(arr)
     }
 }
 function equal() {
     if (arr[1] == "+") {
-        var rawr = parseInt(currentNum)
-        var XD = parseInt(lastNum)
-        total = (XD + rawr)
+        var rawr = parseFloat(currentNum)
+        var XD = parseFloat(lastNum)
+        total = (XD + rawr).toFixed(3)
         disp = total
         updateDisplay()
-        for (i = 0; i <= arr.length + 1; i++) {
-            arr.pop()
-        }
+        arr = []
         arr.push(total.toString())
         currentNum = total.toString()
         console.log(arr)
     }
     else if (arr[1] == "-") {
-        var rawr = parseInt(currentNum)
-        var XD = parseInt(lastNum)
-        total = (rawr - XD)
+        var rawr = parseFloat(currentNum)
+        var XD = parseFloat(lastNum)
+        total = (rawr-XD).toFixed(3)
         disp = total
         updateDisplay()
-        for (i = 0; i <= arr.length + 1; i++) {
-            arr.pop()
-        }
+        arr = []
         arr.push(total.toString())
         currentNum = total.toString()
         console.log(arr)
     }
     else if (arr[1] == "X") {
-        var rawr = parseInt(currentNum)
-        var XD = parseInt(lastNum)
-        total = (rawr * XD)
+        var rawr = parseFloat(currentNum)
+        var XD = parseFloat(lastNum)
+        total = (XD * rawr).toFixed(3)
         disp = total
         updateDisplay()
-        for (i = 0; i <= arr.length + 1; i++) {
-            arr.pop()
-        }
+        arr = []
         arr.push(total.toString())
         currentNum = total.toString()
         console.log(arr)
     }
     else if (arr[1] == "/") {
-        var rawr = parseInt(currentNum)
-        var XD = parseInt(lastNum)
-        total = (rawr / XD)
+        var rawr = parseFloat(currentNum)
+        var XD = parseFloat(lastNum)
+        total = (rawr/ XD).toFixed(3)
         disp = total
         updateDisplay()
-        for (i = 0; i <= arr.length + 1; i++) {
-            arr.pop()
-        }
+        arr = []
         arr.push(total.toString())
         currentNum = total.toString()
         console.log(arr)
@@ -197,6 +191,7 @@ function fullClear() {
     total = 0
     state = 0
     updateDisplay()
+    console.log(arr)
 }
 function back(){
     arr.pop()
