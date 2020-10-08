@@ -13,6 +13,7 @@ var disp = "0"
 var total = 0
 var state = 0
 
+
 function init() {
     const currentDiv = document.getElementById("main");
     const h1 = document.createElement("h1");
@@ -29,66 +30,85 @@ function init() {
     const fullClearBTN = makeElement("button", "col-6 border bg-success text-primary", "fullClearBTN", "C");
     fullClearBTN.setAttribute("onclick", "fullClear();");
     topRow.appendChild(fullClearBTN);
-    const backBTN = makeElement("button", "col-3 border bg-success text-primary", "backBTN", "Back");
+    const backBTN = makeElement("button", "backer col-3 border bg-success text-primary", "backBTN", "Back");
     backBTN.setAttribute("onclick", "back();");
     topRow.appendChild(backBTN);
-    const divBTN = makeElement("button", "col-3 border bg-danger text-primary", "/", "/");
+    const divBTN = makeElement("button", "opz col-3 border bg-danger text-primary", "/", "/");
     divBTN.setAttribute("onclick", "operators(this.id)");
     topRow.appendChild(divBTN);
     const secondRow = makeElement("div", "row", "secondRow", "");
     currentDiv.appendChild(secondRow);
-    const nineBTN = makeElement("button", "col-3 border bg-primary text-success", "9", "9");
+    const nineBTN = makeElement("button", "cell col-3 border bg-primary text-success", "9", "9");
     nineBTN.setAttribute("onclick", "numbers(this.id);");
     secondRow.appendChild(nineBTN);
-    const eightBTN = makeElement("button", "col-3 border bg-primary text-success", "8", "8");
+    const eightBTN = makeElement("button", "cell col-3 border bg-primary text-success", "8", "8");
     eightBTN.setAttribute("onclick", "numbers(this.id);");
     secondRow.appendChild(eightBTN);
-    const sevenBTN = makeElement("button", "col-3 border bg-primary text-success", "7", "7");
+    const sevenBTN = makeElement("button", "cell col-3 border bg-primary text-success", "7", "7");
     sevenBTN.setAttribute("onclick", "numbers(this.id)");
     secondRow.appendChild(sevenBTN);
-    const multiplyBTN = makeElement("button", "col-3 border bg-danger text-primary", "X", "X");
+    const multiplyBTN = makeElement("button", "opz col-3 border bg-danger text-primary", "X", "X");
     multiplyBTN.setAttribute("onclick", "operators(this.id);");
     secondRow.appendChild(multiplyBTN);
     const thirdRow = makeElement("div", "row", "thirdRow", "");
     currentDiv.appendChild(thirdRow);
-    const sixBTN = makeElement("button", "col-3 border bg-primary text-success", "6", "6");
+    const sixBTN = makeElement("button", "cell col-3 border bg-primary text-success", "6", "6");
     sixBTN.setAttribute("onclick", "numbers(this.id);");
     thirdRow.appendChild(sixBTN);
-    const fiveBTN = makeElement("button", "col-3 border bg-primary text-success", "5", "5");
+    const fiveBTN = makeElement("button", "cell col-3 border bg-primary text-success", "5", "5");
     fiveBTN.setAttribute("onclick", "numbers(this.id);");
     thirdRow.appendChild(fiveBTN);
-    const fourBTN = makeElement("button", "col-3 border bg-primary text-success", "4", "4");
+    const fourBTN = makeElement("button", "cell col-3 border bg-primary text-success", "4", "4");
     fourBTN.setAttribute("onclick", "numbers(this.id);");
     thirdRow.appendChild(fourBTN);
-    const minusBTN = makeElement("button", "col-3 border bg-danger text-primary", "-", "-");
+    const minusBTN = makeElement("button", "opz col-3 border bg-danger text-primary", "-", "-");
     minusBTN.setAttribute("onclick", "operators(this.id);");
     thirdRow.appendChild(minusBTN);
     const fourthRow = makeElement("div", "row", "fourthRow", "");
     currentDiv.appendChild(fourthRow);
-    const threeBTN = makeElement("button", "col-3 border bg-primary text-success", "3", "3");
+    const threeBTN = makeElement("button", "cell col-3 border bg-primary text-success", "3", "3");
     threeBTN.setAttribute("onclick", "numbers(this.id);");
     fourthRow.appendChild(threeBTN);
-    const twoBTN = makeElement("button", "col-3 border bg-primary text-success", "2", "2");
+    const twoBTN = makeElement("button", "cell col-3 border bg-primary text-success", "2", "2");
     twoBTN.setAttribute("onclick", "numbers(this.id);");
     fourthRow.appendChild(twoBTN);
-    const oneBTN = makeElement("button", "col-3 border bg-primary text-success", "1", "1");
+    const oneBTN = makeElement("button", "cell col-3 border bg-primary text-success", "1", "1");
     oneBTN.setAttribute("onclick", "numbers(this.id);");
     fourthRow.appendChild(oneBTN);
-    const plusBTN = makeElement("button", "col-3 border bg-danger text-primary", "+", "+");
+    const plusBTN = makeElement("button", "opz col-3 border bg-danger text-primary", "+", "+");
     plusBTN.setAttribute("onclick", "operators(this.id);");
     fourthRow.appendChild(plusBTN);
     const bottomRow = makeElement("div", "row", "bottomRow", "");
     currentDiv.appendChild(bottomRow);
-    const zeroBTN = makeElement("button", "col-6 border bg-primary text-success", "0", "0");
+    const zeroBTN = makeElement("button", "cell col-6 border bg-primary text-success", "0", "0");
     zeroBTN.setAttribute("onclick", "numbers(this.id);");
     bottomRow.appendChild(zeroBTN);
-    const decimalBTN = makeElement("button", "col-3 border bg-primary text-success", ".", ".");
+    const decimalBTN = makeElement("button", "cell col-3 border bg-primary text-success", ".", ".");
     decimalBTN.setAttribute("onclick", "numbers(this.id);");
     bottomRow.appendChild(decimalBTN);
-    const equalBTN = makeElement("button", "col-3 border bg-danger text-primary", "equalBTN", "=");
+    const equalBTN = makeElement("button", "fullsend col-3 border bg-danger text-primary", "equalBTN", "=");
     equalBTN.setAttribute("onclick", "equal();");
     bottomRow.appendChild(equalBTN);
+    for (var i = 0; i < opz.length; i++) {
+        opz[i].removeAttribute('onclick')
+    }
+    for (var i = 0; i < butt.length; i++) {
+        butt[i].removeAttribute('onclick')
+    }
+   
+    
+
+
 }
+
+var nums = document.getElementsByClassName("cell")
+var opz = document.getElementsByClassName("opz")
+var butt = document.getElementsByClassName("backer")
+var buttz = document.getElementsByClassName("fullsend")
+
+
+
+
 
 function updateDisplay() {
     document.getElementById("booty").innerHTML = disp
@@ -96,6 +116,15 @@ function updateDisplay() {
 
 function numbers(id) {
     if (state == 0) {
+        for (var i = 0; i < opz.length; i++) {
+            opz[i].setAttribute("onclick", "operators(this.id)")
+        }
+        for (var i = 0; i < butt.length; i++) {
+            butt[i].setAttribute('onclick', "back()")
+        }
+        for (var i = 0; i < buttz.length; i++) {
+            buttz[i].removeAttribute('onclick')
+        }
         arr.push(id)
         currentNum = arr.join("")
         disp = currentNum
@@ -103,6 +132,13 @@ function numbers(id) {
         console.log(arr)
     }
     else {
+        for (var i = 0; i < opz.length; i++) {
+            opz[i].setAttribute("onclick", "operators(this.id)")
+        }
+        for (var i = 0; i < buttz.length; i++) {
+            buttz[i].setAttribute('onclick', "equal()")
+        }
+       
         arr.push(id)
         lastNum = arr.slice(2, arr.length).join("")
         disp = lastNum
@@ -114,6 +150,9 @@ function numbers(id) {
 }
 function operators(id) {
     if (state == 0) {
+        for (var i = 0; i < opz.length; i++) {
+            opz[i].removeAttribute('onclick')
+        }
         var dab = arr.join("")
         console.log(dab)
         arr = []
@@ -126,13 +165,25 @@ function operators(id) {
         arr.push(id)
         console.log(arr)
         console.log(arr)
+        for (var i = 0; i < nums.length; i++) {
+            nums[i].setAttribute("onclick", "numbers(this.id)")
+        }
+        for (var i = 0; i < butt.length; i++) {
+            butt[i].setAttribute('onclick', "back()")
+        }
     }
 }
 function equal() {
     if (arr[1] == "+") {
         var rawr = parseFloat(currentNum)
         var XD = parseFloat(lastNum)
-        total = (XD + rawr).toFixed(3)
+        
+        if (total - Math.floor(total) == 0){
+            total = (rawr+XD)
+        }
+        if (total - Math.floor(total) !== 0){
+            total = (rawr+XD).toFixed(3)
+        }
         disp = total
         updateDisplay()
         arr = []
@@ -143,7 +194,13 @@ function equal() {
     else if (arr[1] == "-") {
         var rawr = parseFloat(currentNum)
         var XD = parseFloat(lastNum)
-        total = (rawr-XD).toFixed(3)
+        
+        if (total - Math.floor(total) == 0){
+            total = (rawr-XD)
+        }
+        if (total - Math.floor(total) !== 0){
+            total = (rawr-XD).toFixed(3)
+        }
         disp = total
         updateDisplay()
         arr = []
@@ -154,7 +211,13 @@ function equal() {
     else if (arr[1] == "X") {
         var rawr = parseFloat(currentNum)
         var XD = parseFloat(lastNum)
-        total = (XD * rawr).toFixed(3)
+        
+        if (total - Math.floor(total) == 0){
+            total = (XD * rawr)
+        }
+        if (total - Math.floor(total) !== 0){
+            total = (XD * rawr).toFixed(3)
+        }
         disp = total
         updateDisplay()
         arr = []
@@ -165,7 +228,13 @@ function equal() {
     else if (arr[1] == "/") {
         var rawr = parseFloat(currentNum)
         var XD = parseFloat(lastNum)
-        total = (rawr/ XD).toFixed(3)
+        
+        if (total - Math.floor(total) == 0){
+            total = (rawr/XD)
+        }
+        if (total - Math.floor(total) !== 0){
+            total = (rawr/XD).toFixed(3)
+        }
         disp = total
         updateDisplay()
         arr = []
@@ -173,9 +242,33 @@ function equal() {
         currentNum = total.toString()
         console.log(arr)
     }
+    for (var i = 0; i < nums.length; i++) {
+        nums[i].removeAttribute('onclick')
+    }
+    for (var i = 0; i < butt.length; i++) {
+        butt[i].removeAttribute('onclick')
+    }
+    for (var i = 0; i < buttz.length; i++) {
+        buttz[i].removeAttribute('onclick')
+    }
 }
 
 function fullClear() {
+    for (var i = 0; i < nums.length; i++) {
+        nums[i].setAttribute("onclick", "numbers(this.id)")
+    }
+    for (var i = 0; i < butt.length; i++) {
+        butt[i].removeAttribute('onclick')
+    }
+    for (var i = 0; i < opz.length; i++) {
+        opz[i].removeAttribute('onclick')
+    }
+    for (var i = 0; i < buttz.length; i++) {
+        buttz[i].setAttribute('onclick', "equal()")
+    }
+
+    
+
     console.log("reeee")
     arr = []
     console.log(arr)
