@@ -105,16 +105,12 @@ function numbers(id) {
     else {
         arr.push(id)
         lastNum = arr.slice(2, arr.length).join("")
-        var yeet = (arr.length - 2)
-        for (i = 0; i < yeet; i++) {
-            arr.pop()
-        }
-        arr.push(lastNum)
         disp = lastNum
         updateDisplay();
-        console.log(arr)
+        state ++
+        
     }
-    console.log(arr)
+   
 }
 function operators(id) {
     if (state == 0) {
@@ -123,10 +119,10 @@ function operators(id) {
         arr = []
         arr.push(dab)
         arr.push(id)
-        state++
         console.log(arr)
+        state ++
     }
-    else if (state == 1) {
+    else if (state> 0) {
         arr.push(id)
         console.log(arr)
         console.log(arr)
@@ -181,9 +177,7 @@ function equal() {
 
 function fullClear() {
     console.log("reeee")
-    for (i = 0; i <= arr.length + 1; i++) {
-        arr.pop()
-    }
+    arr = []
     console.log(arr)
     currentNum = ""
     lastNum = ""
@@ -194,9 +188,20 @@ function fullClear() {
     console.log(arr)
 }
 function back(){
-    arr.pop()
-    console.log(arr)
-    updateDisplay()
+    if (state == 0){
+        arr.pop()
+        disp = arr.join("")
+        updateDisplay()
+    }
+    if (state == 1){
+        arr.pop()
+    }
+    if (state>1){
+        arr.pop()
+        lastNum = arr.slice(2, arr.length).join("")
+        disp = lastNum
+        updateDisplay()
+    }
 
 }
 
