@@ -1,17 +1,22 @@
-const makeElement = (tag, className, id, innerText = "") => {
-    let element = document.createElement(tag);
-    element.setAttribute('class', className);
-    element.setAttribute('id', id);
-    element.innerText = innerText;
-    return element;
+var arr = []   //Global variable
+var currentNum = ""  //Global variable
+var lastNum = ""  //Global variable
+var op = ""  //Global variable
+var disp = "0"  //Global variable
+var total = 0  //Global variable
+var state = 0  //Global variable
+var nums = document.getElementsByClassName("cell")  //Global variable for all number buttons
+var opz = document.getElementsByClassName("opz")  //Global variable for all operations buttons
+var butt = document.getElementsByClassName("backer")  // Global variable for back botton
+var buttz = document.getElementsByClassName("fullsend") // Global variable for equal button
+
+const makeElement = (tag, className, id, innerText = "") => { //element constructor
+    let element = document.createElement(tag); //sets tag
+    element.setAttribute('class', className);  //sets class  
+    element.setAttribute('id', id);  //sets ID
+    element.innerText = innerText;  //set inner text
+    return element;  //return element
 }
-var arr = []
-var currentNum = ""
-var lastNum = ""
-var op = ""
-var disp = "0"
-var total = 0
-var state = 0
 
 
 function init() {
@@ -95,206 +100,177 @@ function init() {
     for (var i = 0; i < butt.length; i++) {
         butt[i].removeAttribute('onclick')
     }
-   
-    
-
-
 }
 
-var nums = document.getElementsByClassName("cell")
-var opz = document.getElementsByClassName("opz")
-var butt = document.getElementsByClassName("backer")
-var buttz = document.getElementsByClassName("fullsend")
-
-
-
-
-
-function updateDisplay() {
-    document.getElementById("booty").innerHTML = disp
+function updateDisplay() {  //function that updates the display
+    document.getElementById("booty").innerHTML = disp //setting the 
 }
 
-function numbers(id) {
-    if (state == 0) {
-        for (var i = 0; i < opz.length; i++) {
-            opz[i].setAttribute("onclick", "operators(this.id)")
+function numbers(id) {   //number button controller passing in button id
+    if (state == 0) {  //if statement for if state ==0 
+        for (var i = 0; i < opz.length; i++) { //for loop for all of the operators
+            opz[i].setAttribute("onclick", "operators(this.id)")  //turning on the operators onlick function
         }
-        for (var i = 0; i < butt.length; i++) {
-            butt[i].setAttribute('onclick', "back()")
+        for (var i = 0; i < butt.length; i++) {  //for loop for all of the back botton
+            butt[i].setAttribute('onclick', "back()")   //turning on back button onclick attribute
         }
-        for (var i = 0; i < buttz.length; i++) {
-            buttz[i].removeAttribute('onclick')
+        for (var i = 0; i < buttz.length; i++) {   //for loop for the equals button
+            buttz[i].removeAttribute('onclick')  //removing onclick feature from equals 
         }
-        arr.push(id)
-        currentNum = arr.join("")
-        disp = currentNum
-        updateDisplay();
-        console.log(arr)
+        arr.push(id)  //pushing number id to arr global
+        currentNum = arr.join("") //joining all arr components and setting them to currentNum global
+        disp = currentNum  // setting dipslay to current number
+        updateDisplay();  //update display
     }
     else {
-        for (var i = 0; i < opz.length; i++) {
-            opz[i].setAttribute("onclick", "operators(this.id)")
+        for (var i = 0; i < opz.length; i++) { //for loop for operators
+            opz[i].setAttribute("onclick", "operators(this.id)") //turns onclick on for operators
         }
-        for (var i = 0; i < buttz.length; i++) {
-            buttz[i].setAttribute('onclick', "equal()")
+        for (var i = 0; i < buttz.length; i++) { //for loop for equals
+            buttz[i].setAttribute('onclick', "equal()")  //turn onclick on for equals
         }
-       
-        arr.push(id)
-        lastNum = arr.slice(2, arr.length).join("")
-        disp = lastNum
-        updateDisplay();
-        state ++
-        
+
+        arr.push(id)  //pushing button id to arr
+        lastNum = arr.slice(2, arr.length).join("") // seting lastNum equal to array numbers after operator
+        disp = lastNum //setting disp to lastNum
+        updateDisplay(); //update display
+        state++ //incrrement the state
+
     }
-   
+
 }
-function operators(id) {
-    if (state == 0) {
-        for (var i = 0; i < opz.length; i++) {
-            opz[i].removeAttribute('onclick')
+function operators(id) { //controller for operators
+    if (state == 0) {  //if state == zero
+        for (var i = 0; i < opz.length; i++) { //for loop for all operators
+            opz[i].removeAttribute('onclick') // removes onlick from operators
         }
-        var dab = arr.join("")
-        console.log(dab)
-        arr = []
-        arr.push(dab)
-        arr.push(id)
-        console.log(arr)
-        state ++
+        var dab = arr.join("") //joining all integers and setting them equal to a variable
+        arr = [] // clearing arr
+        arr.push(dab) // adding variable to arr
+        arr.push(id)  // adding operator id to arr
+        state++ // incrementing state
     }
-    else if (state> 0) {
-        arr.push(id)
-        console.log(arr)
-        console.log(arr)
-        for (var i = 0; i < nums.length; i++) {
-            nums[i].setAttribute("onclick", "numbers(this.id)")
+    else if (state > 0) { //if state is greater than one
+        arr.push(id)  //push operator id to arr
+        for (var i = 0; i < nums.length; i++) { // for loop for numer buttons
+            nums[i].setAttribute("onclick", "numbers(this.id)") //turning on the onlick for number buttons
         }
-        for (var i = 0; i < butt.length; i++) {
-            butt[i].setAttribute('onclick', "back()")
+        for (var i = 0; i < butt.length; i++) { // for loop for back button
+            butt[i].setAttribute('onclick', "back()") //turning on the onlick for back button
         }
     }
 }
-function equal() {
-    if (arr[1] == "+") {
-        var rawr = parseFloat(currentNum)
-        var XD = parseFloat(lastNum)
-        
-        if (total - Math.floor(total) == 0){
-            total = (rawr+XD)
+function equal() { //contorller for equals button
+    if (arr[1] == "+") { //if operator is plus
+        var rawr = parseFloat(currentNum) //converting string to number
+        var XD = parseFloat(lastNum) //converting string to number 
+
+        if (total - Math.floor(total) == 0) { //if total is integer 
+            total = (rawr + XD) //add two numbers together
         }
-        if (total - Math.floor(total) !== 0){
-            total = (rawr+XD).toFixed(3)
+        if (total - Math.floor(total) !== 0) { //if total is decimal
+            total = (rawr + XD).toFixed(3) //round to three decimals
         }
-        disp = total
-        updateDisplay()
-        arr = []
-        arr.push(total.toString())
-        currentNum = total.toString()
-        console.log(arr)
+        disp = total //setting display equal to total
+        updateDisplay() //update display
+        arr = [] //clearing arr
+        arr.push(total.toString()) // psuhing total to arr as string
+        currentNum = total.toString() // setting current num equal to total as string
     }
-    else if (arr[1] == "-") {
-        var rawr = parseFloat(currentNum)
-        var XD = parseFloat(lastNum)
-        
-        if (total - Math.floor(total) == 0){
-            total = (rawr-XD)
+    else if (arr[1] == "-") {//if operator is minus
+        var rawr = parseFloat(currentNum) //converting string to number
+        var XD = parseFloat(lastNum) //converting string to number
+
+        if (total - Math.floor(total) == 0) { //if total is integer 
+            total = (rawr - XD) //subtract two numbers together
         }
-        if (total - Math.floor(total) !== 0){
-            total = (rawr-XD).toFixed(3)
+        if (total - Math.floor(total) !== 0) {//if total is decimal
+            total = (rawr - XD).toFixed(3)//round to three decimals
         }
-        disp = total
-        updateDisplay()
-        arr = []
-        arr.push(total.toString())
-        currentNum = total.toString()
-        console.log(arr)
+        disp = total //setting display equal to total
+        updateDisplay()//update display
+        arr = []//clearing arr
+        arr.push(total.toString())  // pushing total to arr as string
+        currentNum = total.toString() // setting current num equal to total as string
     }
-    else if (arr[1] == "X") {
-        var rawr = parseFloat(currentNum)
-        var XD = parseFloat(lastNum)
-        
-        if (total - Math.floor(total) == 0){
-            total = (XD * rawr)
+    else if (arr[1] == "X") {//if operator is times
+        var rawr = parseFloat(currentNum)//converting string to number
+        var XD = parseFloat(lastNum)//converting string to number
+
+        if (total - Math.floor(total) == 0) { //if total is integer
+            total = (XD * rawr)//multiply two numbers together
         }
-        if (total - Math.floor(total) !== 0){
-            total = (XD * rawr).toFixed(3)
+        if (total - Math.floor(total) !== 0) {//if total is decimal
+            total = (XD * rawr).toFixed(3) //round to three decimals
         }
-        disp = total
-        updateDisplay()
-        arr = []
-        arr.push(total.toString())
-        currentNum = total.toString()
-        console.log(arr)
+        disp = total//setting display equal to total
+        updateDisplay()//update display
+        arr = []//clearing arr
+        arr.push(total.toString()) // pushing total to arr as string
+        currentNum = total.toString() // setting current num equal to total as string
     }
-    else if (arr[1] == "/") {
-        var rawr = parseFloat(currentNum)
-        var XD = parseFloat(lastNum)
-        
-        if (total - Math.floor(total) == 0){
-            total = (rawr/XD)
+    else if (arr[1] == "/") {//if operator is times
+        var rawr = parseFloat(currentNum)//converting string to number
+        var XD = parseFloat(lastNum)//converting string to number
+
+        if (total - Math.floor(total) == 0) {//if total is integer
+            total = (rawr / XD)//divide two numbers 
         }
-        if (total - Math.floor(total) !== 0){
-            total = (rawr/XD).toFixed(3)
+        if (total - Math.floor(total) !== 0) {//if total is decimal
+            total = (rawr / XD).toFixed(3)//round to three decimals
         }
-        disp = total
-        updateDisplay()
-        arr = []
-        arr.push(total.toString())
-        currentNum = total.toString()
-        console.log(arr)
+        disp = total//setting display equal to total
+        updateDisplay()//update display
+        arr = []//clearing arr
+        arr.push(total.toString())// pushing total to arr as string
+        currentNum = total.toString() // setting current num equal to total as string
     }
-    for (var i = 0; i < nums.length; i++) {
-        nums[i].removeAttribute('onclick')
+    for (var i = 0; i < nums.length; i++) { //for loop for number buttons
+        nums[i].removeAttribute('onclick')//removes onclick atrribut for number buttons
     }
-    for (var i = 0; i < butt.length; i++) {
-        butt[i].removeAttribute('onclick')
+    for (var i = 0; i < butt.length; i++) {//for loop for back button
+        butt[i].removeAttribute('onclick')//removes onclick attribute for back button
     }
-    for (var i = 0; i < buttz.length; i++) {
-        buttz[i].removeAttribute('onclick')
+    for (var i = 0; i < buttz.length; i++) {//for loop for equal button
+        buttz[i].removeAttribute('onclick')//removes onclick for equal button
     }
 }
 
-function fullClear() {
-    for (var i = 0; i < nums.length; i++) {
-        nums[i].setAttribute("onclick", "numbers(this.id)")
+function fullClear() { //function for all clear
+    for (var i = 0; i < nums.length; i++) { // for loop for all number buttons
+        nums[i].setAttribute("onclick", "numbers(this.id)")//turning on onclick for number buttons
     }
-    for (var i = 0; i < butt.length; i++) {
-        butt[i].removeAttribute('onclick')
+    for (var i = 0; i < butt.length; i++) { // for loop for back button
+        butt[i].removeAttribute('onclick')//remove onclick for back button
     }
-    for (var i = 0; i < opz.length; i++) {
-        opz[i].removeAttribute('onclick')
+    for (var i = 0; i < opz.length; i++) { // for loop for all operator buttons
+        opz[i].removeAttribute('onclick') // removing onclick from operators
     }
-    for (var i = 0; i < buttz.length; i++) {
-        buttz[i].setAttribute('onclick', "equal()")
+    for (var i = 0; i < buttz.length; i++) {  // for loop for equals button
+        buttz[i].setAttribute('onclick', "equal()") // turns the conlick back on for equal button
     }
-
-    
-
-    console.log("reeee")
-    arr = []
-    console.log(arr)
-    currentNum = ""
-    lastNum = ""
-    disp = "0"
-    total = 0
-    state = 0
-    updateDisplay()
-    console.log(arr)
+    arr = [] //Reset global
+    currentNum = "" //Reset global
+    lastNum = "" //Reset global
+    disp = "0" //Reset global
+    total = 0 //Reset global
+    state = 0 //Reset global
+    updateDisplay()//updating dipslay
 }
-function back(){
-    if (state == 0){
-        arr.pop()
-        disp = arr.join("")
-        updateDisplay()
+function back() { //controller for back button
+    if (state == 0) { //if state is 0
+        arr.pop() //remove the last thing from array
+        disp = arr.join("") //setting display equal to arr.join
+        updateDisplay()//update display
     }
-    if (state == 1){
-        arr.pop()
+    if (state == 1) { // if state = 1
+        arr.pop()//remove last thing from array
     }
-    if (state>1){
-        arr.pop()
-        lastNum = arr.slice(2, arr.length).join("")
-        disp = lastNum
-        updateDisplay()
+    if (state > 1) { //if state is greater thatn 1
+        arr.pop() //remove last thing from array
+        lastNum = arr.slice(2, arr.length).join("")//seting last number to the number after the operator
+        disp = lastNum// setting the display equal to the lastNum
+        updateDisplay() //update display
     }
-
 }
 
